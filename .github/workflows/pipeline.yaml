@@ -46,6 +46,9 @@ jobs:
 
   Terratest:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: test
     env:
       env_name: sandbox
     environment:
@@ -68,6 +71,6 @@ jobs:
       run: go get github.com/gruntwork-io/terratest/modules/terraform; go get github.com/stretchr/testify/assert;
 
     - name: Run tests
-      run: pushd ./test; go test; popd
+      run: go test
 
 
