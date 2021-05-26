@@ -44,7 +44,7 @@ jobs:
     - name: Terraform Validate
       run: terraform validate -no-color
 
-  terratest:
+  Terratest:
     runs-on: ubuntu-latest
     env:
       env_name: sandbox
@@ -65,7 +65,7 @@ jobs:
         go-version: '1.14.0-rc1'
 
     - name: Fetch packages
-      run: go get github.com/gruntwork-io/terratest/modules/terraform; go get github.com/stretchr/testify/assert@v1.4.0;
+      run: go get github.com/gruntwork-io/terratest/modules/terraform; go get github.com/stretchr/testify/assert;
 
     - name: Run tests
       run: go test
