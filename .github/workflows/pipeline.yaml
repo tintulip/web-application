@@ -68,6 +68,6 @@ jobs:
       run: go get github.com/gruntwork-io/terratest/modules/terraform; go get github.com/stretchr/testify/assert;
 
     - name: Run tests
-      run: pushd ../../test; go test; popd
+      run: pushd ./test; go test; popd
 
 
