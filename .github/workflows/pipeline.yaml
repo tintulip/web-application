@@ -16,7 +16,6 @@ jobs:
   terraform_checks:
     name: Terraform checks
     runs-on: ubuntu-latest
-    working-directory: ../../test
     steps:
     - name: Checkout
       uses: actions/checkout@v2.3.4
@@ -69,6 +68,6 @@ jobs:
       run: go get github.com/gruntwork-io/terratest/modules/terraform; go get github.com/stretchr/testify/assert;
 
     - name: Run tests
-      run: go test
+      run: pushd ../../test; go test; popd
 
 
