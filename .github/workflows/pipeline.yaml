@@ -45,7 +45,6 @@ jobs:
       run: terraform validate -no-color
 
   terratest:
-    needs: terratest
     runs-on: ubuntu-latest
     env:
       env_name: sandbox
