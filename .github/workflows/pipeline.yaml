@@ -20,16 +20,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.3.4
+
     - name: tfsec
       uses: tintulip/terraform-security-scan@v2.2.1
       with:
         tfsec_actions_comment: false
+
     - name: checkov-action
-      uses: bridgecrewio/checkov-action@master
-      with:
-        directory: .
-        quiet: true
-        framework: terraform
+      run: make sec-check
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1.3.2
@@ -40,7 +38,8 @@ jobs:
       run: terraform fmt -check -recursive
 
     - name: Terraform Init
-      run: terraform init
+      run: make init
+      working-directory: components
 
     - name: Terraform Validate
       run: terraform validate -no-color
