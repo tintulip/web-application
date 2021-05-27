@@ -31,7 +31,7 @@ jobs:
         framework: terraform
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1.3.2
+      uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ${{ env.tf_version }}
         terraform_wrapper: false
