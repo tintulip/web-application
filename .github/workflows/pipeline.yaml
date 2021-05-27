@@ -34,6 +34,8 @@ jobs:
       uses: hashicorp/setup-terraform@v1.3.2
       with:
         terraform_version: ${{ env.tf_version }}
+        terraform_wrapper: false
+
 
     - name: Terraform Format
       run: terraform fmt -check -recursive
