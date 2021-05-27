@@ -21,13 +21,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
 
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - name: Install dependencies
+      run: |
+        python -m pip3 install --upgrade pip3 \
+        pip3 install checkov
+
     - name: tfsec
       uses: tintulip/terraform-security-scan@v2.2.1
       with:
         tfsec_actions_comment: false
 
     - name: checkov-action
-      run: curl -sL https://github.com/bridgecrewio/checkov; make sec-check
+      run: make sec-check
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1.3.2
