@@ -10,7 +10,8 @@ import (
 func TestTerraformCallerIdentity(t *testing.T) {
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../components/call-identity",
+		TerraformDir: "../components/call-identity", 
+		NoColor: true,
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
