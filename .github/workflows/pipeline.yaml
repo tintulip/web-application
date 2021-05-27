@@ -27,8 +27,7 @@ jobs:
         tfsec_actions_comment: false
 
     - name: checkov-action
-      uses: bridgecrewio/checkov-action@master
-      run: make sec-check
+      run: curl -sL https://github.com/bridgecrewio/checkov; make sec-check
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1.3.2
