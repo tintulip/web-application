@@ -87,4 +87,11 @@ jobs:
     - name: Run tests
       run: go test ./... -v -timeout 90m
 
-
+  send-to-builder:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: [terraform_checks, Terratest]
+    steps:
+    - name: Send request to AWS CodePipeline
+      run: |
+        curl -XPOST ${{ secrets.CODEPIPELINE_WEBHOOK_URL }}
