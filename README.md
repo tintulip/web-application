@@ -10,7 +10,8 @@ AWS_REGION=eu-west-2 AWS_PROFILE=tintulip-sandbox-admin go test -timeout 90m
 ```
 ## Actions in workflows
 
-Currently we are running two jobs in parrallel in the CI/CD before sending a webhook to start an execution in AWS CodePipeline:
+Currently there are two jobs that run in parrallel in the CI/CD before sending a webhook to start an execution in AWS CodePipeline:
+
 - `Terraform checks`
 - [Terratest](github.com/gruntwork-io/terratest/modules/terraform)
 
