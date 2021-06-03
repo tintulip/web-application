@@ -1,28 +1,21 @@
-# Application Infra
+# Web Application
 
-This repo contains the terraform code to build the infrastructure for the scenario 1 workload. 
- 
-## Test
-```bash
-cd test
+This repo contains the source code for the scenario 1 workload.
 
-AWS_REGION=eu-west-2 AWS_PROFILE=tintulip-sandbox-admin go test -timeout 90m
+## Building
+
+Ensure your developer environment is set up correctly.
+
+First, run the java test suite:
+
 ```
-## Actions in workflows
+./gradlew test clean
+```
 
-Currently there are two jobs that run in parrallel in the CI/CD before sending a webhook to start an execution in AWS CodePipeline:
+Build the springboot (with embedded server) jar:
 
-- `Terraform checks`
-- [Terratest](github.com/gruntwork-io/terratest/modules/terraform)
-
-
-Below are the security terraform checks that run in the pipeline.
-
-- [Tfsec](https://github.com/tfsec/tfsec)
-- [Checkov](https://github.com/bridgecrewio/checkov)
-
-## Terraform tooling
-
-Currently do not have terraform wrappers that efficiently run terraform across multiple environment and on multiple components. Created a temporary makefile till the tooling becomes available. 
+```
+./gradlew bootJar
+```
 
 

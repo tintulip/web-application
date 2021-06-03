@@ -1,29 +1,37 @@
-# Local .terraform directories
-**/.terraform/*
+# Created by https://www.gitignore.io/api/java,gradle
 
-# .tfstate files
-*.tfstate
-*.tfstate.*
+### Java ###
+*.class
 
-# Crash log files
-crash.log
+# BlueJ files
+*.ctxt
 
-# Ignore any .tfvars files that are generated automatically for each Terraform run. Most
-# .tfvars files are managed as part of configuration and so should be included in
-# version control.
-#
-# example.tfvars
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
-# Ignore override files as they are usually used to override resources locally and so
-# are not checked in
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+# Package Files #
+*.jar
+*.war
+*.ear
 
-# Include override files you do wish to add to version control using negated pattern
-#
-# !example_override.tf
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
-# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
-# example: *tfplan*
+
+### Gradle ###
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+# End of https://www.gitignore.io/api/java,gradle

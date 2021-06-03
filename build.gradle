@@ -1,0 +1,62 @@
+buildscript {
+	apply from: 'libs.gradle'
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
+plugins {
+	id 'org.springframework.boot' version '2.4.6'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.tintulip'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	testCompileOnly 'org.projectlombok:lombok:1.18.20'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+  compile libs.spring
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile libs.springTest
+	testCompile libs.test
+}
+
+import org.gradle.internal.logging.text.StyledTextOutputFactory
+import static org.gradle.internal.logging.text.StyledTextOutput.Style
+
+test {
+    testLogging {
+        events = ["passed", "failed", "skipped"]
+        def out = services.get(StyledTextOutputFactory).create("testResults")
+
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                out.withStyle(Style.Header).println("Result: ${result.resultType} (Total ${result.testCount} tests)")
+                out.withStyle(Style.Success).println("        ${result.successfulTestCount} successes")
+                out.withStyle(Style.Failure).println("        ${result.failedTestCount} failures")
+                out.withStyle(Style.Info).println("        ${result.skippedTestCount} skipped")
+            }
+        }
+    }
+}
+
+test {
+	useJUnitPlatform {
+    excludeTags 'excludeFromBuild'
+  }
+}
