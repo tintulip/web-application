@@ -18,4 +18,16 @@ Build the springboot (with embedded server) jar:
 ./gradlew bootJar
 ```
 
+## Install Adopt OpenJDK 16 on MacOS with brew
 
+```
+brew tap adoptopenjdk/openjdk
+
+brew install adoptopenjdk16
+```
+
+### Adding Adopt OpenJDK 16 to jenv
+
+```
+jenv add $(/usr/libexec/java_home)
+```
