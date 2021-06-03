@@ -1,4 +1,4 @@
-name: Terratest
+name: web-application
 
 on:
   workflow_dispatch: # manual trigger
