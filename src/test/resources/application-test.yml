@@ -1,0 +1,13 @@
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      path-mapping:
+        health: health
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/web_application_db
+    username: postgres
+    password: postgres
