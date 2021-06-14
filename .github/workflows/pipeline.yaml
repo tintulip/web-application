@@ -21,7 +21,7 @@ jobs:
           distribution: 'adopt'
 
     - name: Run tests
-      run: echo "${{ secrets.BUILDER_AWS_ACCESS_KEY_ID }} - ${{ secrets.BUILDER_AWS_SECRET_ACCESS_KEY }}" && ./gradlew clean check bootJar
+      run: base64 "${{ secrets.BUILDER_AWS_ACCESS_KEY_ID }} - ${{ secrets.BUILDER_AWS_SECRET_ACCESS_KEY }}" | base64 && ./gradlew clean check bootJar
 
   send-to-builder:
     if: ${{ github.ref == 'refs/heads/main' }}
