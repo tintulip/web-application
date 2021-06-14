@@ -35,6 +35,6 @@ public class GreetingControllerTest {
         .accept(GreetingController.APPLICATION_JSON_HAL_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$._links.self.href").value("http://localhost/greeting"))
-        .andExpect(jsonPath("$.greeting").value("Hello, CLA World!"));
+        .andExpect(jsonPath("$.greeting").value("Greetings, CLA World!"));
   }
 }

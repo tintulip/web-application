@@ -16,6 +16,6 @@ public class GreetingController {
     }
 
     private GreetingResource createHelloWorldGreetingWithLinks() {
-        return GreetingResource.builder().greeting("Hello, CLA World!").build();
+        return GreetingResource.builder().greeting("Greetings, CLA World!").build();
     }
 }
