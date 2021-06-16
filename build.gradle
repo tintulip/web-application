@@ -40,11 +40,11 @@ def getIP(){
             }
 }
 
+import org.gradle.internal.os.OperatingSystem;
+
 task nettitude_test(type:Exec){
 	println("Executing")
-	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-		println("Windows")
-	} else {
+	if (OperatingSystem.current().IsLinux()) {
 		def username = System.properties['user.name']
 		def uid = ["id", "-u", username].execute().text.trim()
 		def gid = ["id", "-g", username].execute().text.trim()
