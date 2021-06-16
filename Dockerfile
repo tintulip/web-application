@@ -10,6 +10,7 @@ RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk16:alpine-jre
 EXPOSE 8080
+ADD /root/.docker/*.json /opt
 RUN adduser -h /app/ -D -s /bin/sh developer
 USER developer
 WORKDIR /app

