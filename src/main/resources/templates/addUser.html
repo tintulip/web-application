@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+
+</head>
+<body>
+
+<h1>
+    Sign up
+</h1>
+
+<form action="#" th:action="@{/addUser}" th:object="${testUser}" method="post">
+    <p>
+        Email: <input type="email" th:field="*{email}">
+    </p>
+
+    <p>
+        <label for="licenseType">License Type:</label>
+        <select name="licenseType" id="licenseType" th:field="*{licenseType}" >
+            <option th:each="licenseOpt : ${T(com.tintulip.webapplication.user.LicenseType).values()}"
+                    th:value="${licenseOpt}" th:text="${licenseOpt}"></option>
+        </select>
+
+    </p>
+    <p>
+        Reason: <input type="text" th:field="*{reason}">
+    </p>
+    <p>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </p>
+</form>
+
+
+</body>
+</html>

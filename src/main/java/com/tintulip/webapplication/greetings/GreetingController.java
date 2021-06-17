@@ -1,4 +1,4 @@
-package com.tintulip.webapplication.api;
+package com.tintulip.webapplication.greetings;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

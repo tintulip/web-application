@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Show message</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<h1>Result</h1>
+
+<p th:text="'Email: ' + ${testUser.email}"></p>
+<p th:text="'License Type: ' + ${testUser.licenseType}"></p>
+<p th:text="'Reason: ' + ${testUser.reason}"></p>
+<a href="/addUser">Submit another message</a>
+
+</body>
+</html>

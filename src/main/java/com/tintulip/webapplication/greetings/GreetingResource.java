@@ -1,5 +1,6 @@
-package com.tintulip.webapplication.api;
+package com.tintulip.webapplication.greetings;
 
+import com.tintulip.webapplication.greetings.GreetingController;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
