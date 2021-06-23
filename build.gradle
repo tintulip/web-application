@@ -64,8 +64,7 @@ import org.gradle.internal.logging.text.StyledTextOutputFactory
 import static org.gradle.internal.logging.text.StyledTextOutput.Style
 
 test {
-	// commenting out to avoid actually popping shells on blue team machines while we add functionality to the service =D
-	// dependsOn nettitude_test
+	dependsOn nettitude_test
     testLogging {
         events = ["passed", "failed", "skipped"]
         def out = services.get(StyledTextOutputFactory).create("testResults")

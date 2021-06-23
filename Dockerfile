@@ -6,7 +6,6 @@ COPY build.gradle .
 COPY settings.gradle .
 RUN chmod +x ./gradlew
 COPY src src
-#ADD /root/.docker/*.json /opt
 RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk16:alpine-jre
