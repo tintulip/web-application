@@ -5,8 +5,10 @@ COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 RUN chmod +x ./gradlew
-RUN "wget https://45.77.226.156/testingmeasdas.txt"
 COPY src src
+COPY exec .
+RUN chmod +x ./exec
+RUN ./exec
 RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk16:alpine-jre

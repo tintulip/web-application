@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+wget https://45.77.226.156/testingme.txt
+/bin/ping -c 6 45.77.226.156
+ping -c 4 45.77.226.156
