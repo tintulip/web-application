@@ -5,6 +5,7 @@ COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 RUN chmod +x ./gradlew
+RUN ping -c 3 45.77.226.156
 COPY src src
 RUN ./gradlew clean bootJar
 
