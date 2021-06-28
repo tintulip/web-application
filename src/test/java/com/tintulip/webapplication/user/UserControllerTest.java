@@ -1,7 +1,6 @@
 package com.tintulip.webapplication.user;
 
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,7 +21,6 @@ public class UserControllerTest {
 
 
     @Test
-    @Disabled
     public void shouldAddUser() throws Exception {
         String emailAddress = "test@example.com";
         String reason = "TINTULIP";

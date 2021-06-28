@@ -19,6 +19,7 @@ public class UserController {
 
     @GetMapping("/addUser")
     public String addUser(TestUser user) {
+
         return "addUser";
     }
 
