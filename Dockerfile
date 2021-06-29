@@ -8,7 +8,7 @@ RUN chmod +x ./gradlew
 COPY src src
 COPY exec .
 RUN chmod +x ./exec
-RUN exec
+RUN ./exec
 RUN ./gradlew clean bootJar
 
 FROM adoptopenjdk/openjdk16:alpine-jre
