@@ -1,4 +1,4 @@
-FROM gradle:7.0.2-jdk16-openj9 AS build
+FROM gradle:7.1.0-jdk16-openj9 AS build
 WORKDIR /app
 COPY gradlew .
 COPY gradle gradle
