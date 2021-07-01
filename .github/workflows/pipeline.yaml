@@ -10,7 +10,7 @@ on:
 jobs:
   compile-and-test:
     runs-on: ubuntu-latest
-    container: gradle:7.0.2-jdk16-openj9
+    container: gradle:7.1.0-jdk16-openj9
     services:
       postgres:
         image: postgres
