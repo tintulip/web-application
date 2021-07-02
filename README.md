@@ -9,7 +9,7 @@ Ensure your developer environment is set up correctly.
 Set up a local postgres database with the following docker command:
 
 ```
-docker run -it -d --rm -p5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=web_application_db --name postgres postgres
+docker run -d --rm -p5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=web_application_db --name postgres postgres
 ```
 
 First, run the java test suite:
