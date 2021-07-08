@@ -2,7 +2,6 @@
 
 This repo contains the source code for the scenario 1 workload.
 
-
 ## Building
 
 Ensure your developer environment is set up correctly.
