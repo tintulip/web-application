@@ -16,13 +16,6 @@ configurations {
 
 repositories {
 	mavenCentral()
-  maven {
-    url "https://tintulip.jfrog.io/artifactory/gradle-remote/"
-    credentials {
-      username "ci"
-      password "$artifactoryPassword"
-    }
-  }
 }
 
 dependencies {
