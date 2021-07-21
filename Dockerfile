@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.2
+# syntax=footw.jfrog.io/docker-remote/docker/dockerfile:1.2
 FROM footw.jfrog.io/docker-remote/gradle:7.1.0-jdk16-openj9 AS build
 WORKDIR /app
 COPY build.gradle .
