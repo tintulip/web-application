@@ -3,12 +3,12 @@ buildscript {
 	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") ?: resources.text.fromFile("/run/secrets/artiPassword").asString()
     repositories {
         maven {
-			name 'arti'
-            url 'https://footw.jfrog.io/artifactory/gradle-remote'
-            credentials {
-				username = artiUsername
-				password = artiPassword
-			}
+					name 'arti'
+					url 'https://footw.jfrog.io/artifactory/gradle-remote'
+					credentials {
+						username = artiUsername
+						password = artiPassword
+					}
         }
     }
 }
@@ -32,16 +32,14 @@ configurations {
 repositories {
 	def artiUsername = System.getenv("ARTIFACTORY_CI_USERNAME") ?: resources.text.fromFile("/run/secrets/artiUsername").asString()
 	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") ?: resources.text.fromFile("/run/secrets/artiPassword").asString()
-    repositories {
-        maven {
-			name 'arti'
-            url 'https://footw.jfrog.io/artifactory/gradle-remote'
-            credentials {
-				username = artiUsername
-				password = artiPassword
-			}
-        }
-    }
+	maven {
+		name 'arti'
+		url 'https://footw.jfrog.io/artifactory/gradle-remote'
+		credentials {
+			username = artiUsername
+			password = artiPassword
+		}
+	}
 }
 
 dependencies {
