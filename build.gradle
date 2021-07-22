@@ -1,6 +1,6 @@
 buildscript {
-	def artiUsername = resources.text.fromFile("/run/secrets/artiUsername").asString()
-	def artiPassword = resources.text.fromFile("/run/secrets/artiPassword").asString()
+	def artiUsername = System.getenv("ARTIFACTORY_CI_USERNAME") || resources.text.fromFile("/run/secrets/artiUsername").asString()
+	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") || resources.text.fromFile("/run/secrets/artiPassword").asString()
     repositories {
         maven {
 			name 'arti'
@@ -30,8 +30,8 @@ configurations {
 }
 
 repositories {
-	def artiUsername = resources.text.fromFile("/run/secrets/artiUsername").asString()
-	def artiPassword = resources.text.fromFile("/run/secrets/artiPassword").asString()
+	def artiUsername = System.getenv("ARTIFACTORY_CI_USERNAME") || resources.text.fromFile("/run/secrets/artiUsername").asString()
+	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") || resources.text.fromFile("/run/secrets/artiPassword").asString()
     repositories {
         maven {
 			name 'arti'
