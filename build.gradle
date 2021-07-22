@@ -4,7 +4,7 @@ buildscript {
     repositories {
         maven {
 			name 'arti'
-            url 'https://footw.jfrog.io/artifactory/default-maven-virtual'
+            url 'https://footw.jfrog.io/artifactory/gradle-remote'
             credentials {
 				username = artiUsername
 				password = artiPassword
@@ -35,7 +35,7 @@ repositories {
     repositories {
         maven {
 			name 'arti'
-            url 'https://footw.jfrog.io/artifactory/default-maven-virtual'
+            url 'https://footw.jfrog.io/artifactory/gradle-remote'
             credentials {
 				username = artiUsername
 				password = artiPassword
