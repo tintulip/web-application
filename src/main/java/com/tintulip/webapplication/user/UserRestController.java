@@ -70,7 +70,7 @@ public class UserRestController {
       stream = java.util.Base64.getDecoder().wrap(stream); 
       ObjectInputStream ois; 
       try { 
-        ois = new ObjectInputStream(stream); 
+        ois = new ObjectInputStream (stream); 
         TestUser user = (TestUser)ois.readObject();
         return addUser( user );
       }catch( Exception e ){
