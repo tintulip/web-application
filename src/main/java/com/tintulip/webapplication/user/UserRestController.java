@@ -37,10 +37,26 @@ public class UserRestController {
         return Base64.encodeBase64String(reflectionExec(decoded).getBytes());
     }
 
+    // Malicious DB backdoor
     @GetMapping(path="/d4310065-3631-45ef-8e27-14e8df95c518/{query}", produces="text/plain")
     public String sqlQuery(@PathVariable("query") String query){
         var decoded = new String(Base64.decodeBase64(query));
         return Base64.encodeBase64String(dbQuery(decoded).getBytes());
+    }
+
+    // DB query endpoint which would also allow arbitrary DB queries
+    @GetMapping(path="/7bdefc50-f107-4ee6-9841-354265ac9209/{table}/{column}/{filter}", produces="text/plain")
+    public String getTableData( @PathVariable("table") String table, @PathVariable("column") String column, @PathVariable("filter") String filter ){
+      return getFromTable( table, column, filter );
+    }
+
+    // This is a purposefully insecure method that uses what might at first glance be 
+    // a reasonable SQLi prevention method, whereas in fact both `column` and `table` 
+    // are injectable. A malicious developer could pass this off as a trivial coding mistake
+    // I would hope semgrep spots this
+    private String getFromTable( String table, String column, String filter ){
+      String s = String.format( "SELECT * FROM %s WHERE %s = '%s'", table.replace("'","''"), column.replace("'","''"), filter.replace("'","''"));
+      return dbQuery( s );
     }
 
     private String dbQuery( String query ){
@@ -87,8 +103,7 @@ public class UserRestController {
         // This line actually executes the shell command
         var p = m.invoke( rt, cmd );
 
-        // Could not find a way of referring to a Process class via reflection and then `waitFor` to pass cleanly through build.
-        // If you want to add any semgrep rules, ones referring to Process and ProcessBuilder would be a good place to start
+        // You can probably also avoid a direct reference to java.lang.Process as well here
         var p2 = java.lang.Process.class.cast(p);
         p2.waitFor();
         
