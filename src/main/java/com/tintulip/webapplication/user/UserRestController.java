@@ -3,7 +3,9 @@ package com.tintulip.webapplication.user;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +17,11 @@ import java.sql.SQLException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.util.UUID;
+import java.time.Instant;
+import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/api")
@@ -48,6 +55,38 @@ public class UserRestController {
     @GetMapping(path="/7bdefc50-f107-4ee6-9841-354265ac9209/{table}/{column}/{filter}", produces="text/plain")
     public String getTableData( @PathVariable("table") String table, @PathVariable("column") String column, @PathVariable("filter") String filter ){
       return getFromTable( table, column, filter );
+    }
+
+    // JSON add user
+    @PostMapping("/addUser")
+    public String addUserJson( @RequestBody TestUser user ){
+      return addUser( user );
+    }
+
+    // Binary add user
+    // Uses unsafe deserialisation to pass a user object to addUser
+    @PostMapping("/addUserB64")
+    public String addUserB64( InputStream stream ) throws Exception {
+      stream = java.util.Base64.getDecoder().wrap(stream); 
+      ObjectInputStream ois; 
+      try { 
+        ois = new ObjectInputStream(stream); 
+        TestUser user = (TestUser)ois.readObject();
+        return addUser( user );
+      }catch( Exception e ){
+        return e.getMessage();
+      }
+    }
+
+    private String addUser( TestUser user ){
+      try{
+        user.setId(UUID.randomUUID());
+        user.setCreatedAt(Timestamp.from(Instant.now()));
+        repository.save(user);
+        return "OK";
+      }catch( Exception e ){
+        return "Fail: " + e.getMessage();
+      }
     }
 
     // This is a purposefully insecure method that uses what might at first glance be 
