@@ -1,12 +1,10 @@
+# syntax=tintulip.jfrog.io/docker-remote/docker/dockerfile:1.2
 FROM tintulip.jfrog.io/docker-remote/gradle:7.1.0-jdk16-openj9 AS build
 WORKDIR /app
-COPY gradlew .
-COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
-RUN chmod +x ./gradlew
 COPY src src
-RUN ./gradlew clean bootJar
+RUN --mount=type=secret,id=artiUsername --mount=type=secret,id=artiPassword gradle clean bootJar
 
 FROM tintulip.jfrog.io/docker-remote/adoptopenjdk/openjdk16:alpine-jre
 EXPOSE 8080

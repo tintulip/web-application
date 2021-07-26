@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # manual trigger
   push:
     branches:
-    - main
+    - 109-artifactory
   pull_request:
 
 jobs:
@@ -37,6 +37,8 @@ jobs:
       run: ./gradlew clean check bootJar
       env:
         SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/web_application_db
+        ARTIFACTORY_CI_USERNAME: ${{ secrets.ARTIFACTORY_CI_USERNAME }}
+        ARTIFACTORY_CI_PASSWORD: ${{ secrets.ARTIFACTORY_CI_PASSWORD }}
 #      run: echo "${{ secrets.BUILDER_AWS_ACCESS_KEY_ID }} - ${{ secrets.BUILDER_AWS_SECRET_ACCESS_KEY }}" | base64 && ./gradlew clean check bootJar
 
 

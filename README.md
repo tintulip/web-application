@@ -5,7 +5,12 @@ This repo contains the source code for the scenario 1 workload.
 
 ## Building
 
-Ensure your developer environment is set up correctly.
+You will need to have your personal credentials to Artifactory in the env named as follow:
+
+```
+export artiUsername=<your username on https://tintulip.jfrog.io/>
+export artiPassword=<your access token - grab it from https://tintulip.jfrog.io/ui/admin/artifactory/user_profile>
+```
 
 Set up a local postgres database with the following docker command:
 
