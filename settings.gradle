@@ -1,1 +1,16 @@
+pluginManagement {
+	def artiUsername = System.getenv("ARTIFACTORY_CI_USERNAME") ?: resources.text.fromFile("/run/secrets/artiUsername").asString()
+	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") ?: resources.text.fromFile("/run/secrets/artiPassword").asString()
+    repositories {
+        maven {
+			name 'arti'
+			url 'https://tintulip.jfrog.io/artifactory/gradle-plugins-remote'
+			credentials {
+				username = artiUsername
+				password = artiPassword
+			}
+        }
+    }
+}
+
 rootProject.name = 'web-application'

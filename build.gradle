@@ -3,12 +3,12 @@ buildscript {
 	def artiPassword = System.getenv("ARTIFACTORY_CI_PASSWORD") ?: resources.text.fromFile("/run/secrets/artiPassword").asString()
     repositories {
         maven {
-					name 'arti'
-					url 'https://tintulip.jfrog.io/artifactory/gradle-remote'
-					credentials {
-						username = artiUsername
-						password = artiPassword
-					}
+			name 'arti'
+			url 'https://tintulip.jfrog.io/artifactory/gradle-remote'
+			credentials {
+				username = artiUsername
+				password = artiPassword
+			}
         }
     }
 }
