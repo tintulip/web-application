@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # manual trigger
   push:
     branches:
-    - 109-artifactory
+    - main
   pull_request:
 
 jobs:
